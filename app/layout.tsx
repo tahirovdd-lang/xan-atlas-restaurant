@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./reservation.css";
 import "./logo-language-overrides.css";
+import TelegramBookingClient from "./telegram-booking-client";
 
 export const metadata: Metadata = {
   title: "Xan Atlas Restaurant | Самарканд",
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        {children}
+        <TelegramBookingClient />
+      </body>
     </html>
   );
 }
