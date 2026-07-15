@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./reservation.css";
+import "./logo-language-overrides.css";
 
 export const metadata: Metadata = {
   title: "Xan Atlas Restaurant | Самарканд",
