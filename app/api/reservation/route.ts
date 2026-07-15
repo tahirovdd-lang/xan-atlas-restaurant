@@ -10,6 +10,12 @@ type ReservationPayload = {
   language?: string;
 };
 
+type TelegramErrorResponse = {
+  ok?: boolean;
+  error_code?: number;
+  description?: string;
+};
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -18,6 +24,8 @@ function escapeHtml(value: string) {
 }
 
 export async function POST(request: Request) {
+  console.info("Reservation API: POST received");
+
   try {
     const payload = (await request.json()) as ReservationPayload;
     const name = payload.name?.trim();
@@ -34,13 +42,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN?.trim();
+    const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID?.trim();
 
     if (!botToken || !adminChatId) {
-      console.error("Telegram environment variables are not configured");
+      console.error("Reservation API: Telegram environment variables are not configured");
       return NextResponse.json(
-        { ok: false, error: "Сервис бронирования пока не настроен" },
+        { ok: false, error: "Переменные Telegram не настроены в Vercel" },
         { status: 503 },
       );
     }
@@ -68,18 +76,22 @@ export async function POST(request: Request) {
           parse_mode: "HTML",
           disable_web_page_preview: true,
         }),
+        cache: "no-store",
       },
     );
 
-    if (!telegramResponse.ok) {
-      const details = await telegramResponse.text();
-      console.error("Telegram API error:", details);
+    const telegramResult = (await telegramResponse.json().catch(() => ({}))) as TelegramErrorResponse;
+
+    if (!telegramResponse.ok || telegramResult.ok === false) {
+      const description = telegramResult.description || `Telegram HTTP ${telegramResponse.status}`;
+      console.error("Reservation API: Telegram API error:", description);
       return NextResponse.json(
-        { ok: false, error: "Не удалось отправить бронь" },
+        { ok: false, error: `Telegram: ${description}` },
         { status: 502 },
       );
     }
 
+    console.info("Reservation API: booking delivered to Telegram");
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Reservation API error:", error);
