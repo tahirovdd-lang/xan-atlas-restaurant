@@ -80,7 +80,7 @@ export default function Home() {
         <div className="shade" />
         <header className="header shell">
           <a className="brand" href="#home" aria-label="Xan Atlas">
-            <img src="/images/logo.webp" alt="Xan Atlas Restaurant" />
+            <img src="/logo.webp" alt="Xan Atlas Restaurant" />
           </a>
           <nav>{t.nav.map((item, index) => <a key={item} href={`#${["about","gallery","menu","delivery","contacts"][index]}`}>{item}</a>)}</nav>
           <div className="languages">{(["ru", "uz", "en"] as Lang[]).map((item) => <button className={lang === item ? "active" : ""} key={item} onClick={() => setLang(item)}>{item.toUpperCase()}</button>)}</div>
@@ -101,27 +101,27 @@ export default function Home() {
       </section>
 
       <section className="about shell" id="about">
-        <div className="aboutVisual"><img src="/images/about.webp" alt="Интерьер ресторана Xan Atlas" /></div>
+        <div className="aboutVisual"><img src="/about.webp" alt="Интерьер ресторана Xan Atlas" /></div>
         <div className="aboutCopy"><p className="sectionLabel">XAN ATLAS · SAMARKAND</p><h2>{t.aboutTitle}</h2><p>{t.aboutText}</p><div className="contactButtons"><a href="tel:+998662331831">+998 66 233-18-31</a><a target="_blank" rel="noreferrer" href="https://www.instagram.com/xan_atlas_restaurant/">@xan_atlas_restaurant</a></div></div>
       </section>
 
       <section className="gallerySection" id="gallery">
         <div className="shell sectionHead"><div><p className="sectionLabel">GALLERY</p><h2>{t.galleryTitle}</h2></div><p>{t.galleryText}</p></div>
         <div className="galleryGrid shell">
-          <figure className="galleryCard card1"><img src="/images/gallery-1.webp" alt="Главный зал Xan Atlas" /></figure>
-          <figure className="galleryCard card2"><img src="/images/gallery-2.webp" alt="Национальный интерьер Xan Atlas" /></figure>
-          <figure className="galleryCard card3"><img src="/images/about.webp" alt="Зал ресторана Xan Atlas" /></figure>
-          <figure className="galleryCard card4"><img src="/images/hero.webp" alt="Атмосфера Xan Atlas" /></figure>
+          <figure className="galleryCard card1"><img src="/gallery-1.webp" alt="Главный зал Xan Atlas" /></figure>
+          <figure className="galleryCard card2"><img src="/gallery-2.webp" alt="Национальный интерьер Xan Atlas" /></figure>
+          <figure className="galleryCard card3"><img src="/about.webp" alt="Зал ресторана Xan Atlas" /></figure>
+          <figure className="galleryCard card4"><img src="/hero.webp" alt="Атмосфера Xan Atlas" /></figure>
         </div>
       </section>
 
-      <section className="menuSection shell" id="menu"><div><p className="sectionLabel">MENU</p><h2>{t.menuTitle}</h2><p>{t.menuText}</p><a className="secondary inlineButton" href="tel:+998662331831">{t.call}</a></div><div className="menuOrnament"><img src="/images/logo.webp" alt="Xan Atlas" /></div></section>
+      <section className="menuSection shell" id="menu"><div><p className="sectionLabel">MENU</p><h2>{t.menuTitle}</h2><p>{t.menuText}</p><a className="secondary inlineButton" href="tel:+998662331831">{t.call}</a></div><div className="menuOrnament"><img src="/logo.webp" alt="Xan Atlas" /></div></section>
 
       <section className="deliverySection" id="delivery"><div className="deliveryOverlay" /><div className="shell deliveryInner"><div><p className="sectionLabel">DELIVERY</p><h2>{t.deliveryTitle}</h2><p>{t.deliveryText}</p></div><a className="primary" href="tel:+998662331831">+998 66 233-18-31</a></div></section>
 
       <section className="contacts shell" id="contacts"><div><p className="sectionLabel">CONTACTS</p><h2>{t.address}</h2></div><div className="contactList"><a href="tel:+998662331831">+998 66 233-18-31</a><span>11:00–23:00</span><a target="_blank" rel="noreferrer" href="https://www.instagram.com/xan_atlas_restaurant/">Instagram</a><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Samarkand%20Mahmud%20Kashgari%2092">{t.route}</a></div></section>
 
-      <footer><div className="shell footerInner"><img src="/images/logo.webp" alt="Xan Atlas" /><div><a href="tel:+998662331831">+998 66 233-18-31</a><span>{t.address}</span></div></div></footer>
+      <footer><div className="shell footerInner"><img src="/logo.webp" alt="Xan Atlas" /><div><a href="tel:+998662331831">+998 66 233-18-31</a><span>{t.address}</span></div></div></footer>
     </main>
   );
 }
